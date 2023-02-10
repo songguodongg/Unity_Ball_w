@@ -16,6 +16,8 @@ public class ResourceManager : MonoBehaviour
 
     public Dictionary<GameObject, List<Vector3>> sPathes;
 
+    public Transform center;
+
     public SliderExtention sliderExtention;
     // Start is called before the first frame update
     void Start()
@@ -64,7 +66,7 @@ public class ResourceManager : MonoBehaviour
             kv.Key.GetComponent<LineMark>().isPlay=true;
             if (kv.Value.Count > 0)
             {
-                kv.Key.transform.position = kv.Value[0];
+                kv.Key.transform.localPosition = kv.Value[0];
 
             }
         }

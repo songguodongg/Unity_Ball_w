@@ -18,11 +18,16 @@ public class LineMark : MonoBehaviour
     public bool isPlay;     //是否启动回放
     public float playSpeed=2f;  //回放速度
     int index = 1;      //
+
+    //大球旋转后，由于记录的点位是物体的世界坐标，球的路径并不会随球的转动变化，
+    //应该记录相对于中心点的坐标进行运动
+    public Transform center;
+
     // Use this for initialization
     void Start()
     {
         line = this.GetComponent<LineRenderer>();//获得该物体上的LineRender组件  
-                                                 
+        center= FindObjectOfType<Player>().gameObject.transform;
         i = 0;
         RunStart = this.transform.position;
         timespan = initTimeSpan;
@@ -34,6 +39,7 @@ public class LineMark : MonoBehaviour
     {
         if(IsClickSelf())
         {
+            //借助LineRender绘制路径
             RunNext = this.transform.position;
             timespan -= Time.deltaTime;
             if (timespan < 0)
@@ -43,7 +49,7 @@ public class LineMark : MonoBehaviour
                     i++;
                     line.positionCount = i;
                     line.SetPosition(i - 1, this.transform.position);
-                    vector3s.Add(RunStart);
+                    vector3s.Add(this.transform.localPosition);
                 }
 
                 RunStart = RunNext;
@@ -69,9 +75,10 @@ public class LineMark : MonoBehaviour
         
         if(isPlay&& FindObjectOfType<ResourceManager>().sPathes[this.gameObject].Count>1)
         {
-           if (Vector3.Distance(this.transform.position, FindObjectOfType<ResourceManager>().sPathes[this.gameObject][index]) > 0.1f)
+           if (Vector3.Distance(this.transform.localPosition, FindObjectOfType<ResourceManager>().sPathes[this.gameObject][index]) > 0.1f)
            {
-                transform.Translate((FindObjectOfType<ResourceManager>().sPathes[this.gameObject][index] - transform.position).normalized * playSpeed * Time.deltaTime);
+                //transform.Translate((FindObjectOfType<ResourceManager>().sPathes[this.gameObject][index] - transform.position).normalized * playSpeed * Time.deltaTime);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, FindObjectOfType<ResourceManager>().sPathes[this.gameObject][index], Time.deltaTime * playSpeed);
 
             }
             else
@@ -88,6 +95,10 @@ public class LineMark : MonoBehaviour
 
             }
 
+        }
+        else
+        {
+            isPlay = false;
         }
     }
 

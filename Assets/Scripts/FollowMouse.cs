@@ -41,9 +41,9 @@ public class FollowMouse : MonoBehaviour
                     //transform.position = worldPos;
 
                     Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(
-                Input.mousePosition.x,
-                Input.mousePosition.y,
-                Camera.main.transform.InverseTransformPoint(transform.position).z));
+                                        Input.mousePosition.x,
+                                        Input.mousePosition.y,
+                                        Camera.main.transform.InverseTransformPoint(transform.position).z));
                     //限制在球面
                     worldPos = (worldPos - target.transform.position).normalized * R + target.transform.position;
                     transform.position = worldPos;
