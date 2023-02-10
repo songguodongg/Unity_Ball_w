@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class RotateControl : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class RotateControl : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
 
-            if (checkIsCanRotate())
+            if (checkIsCanRotate()&& !IsClickUI())
             {
                 RotateBigBall();
             }
@@ -31,6 +33,24 @@ public class RotateControl : MonoBehaviour
 
 
 
+    }
+
+    /// <summary>
+    /// 是否点到UI
+    /// </summary>
+    /// <returns></returns>
+    public bool IsClickUI()
+    {
+        bool isClickUI = false;
+        EventSystem eventSystem = EventSystem.current;
+        PointerEventData pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+        //射线检测ui
+        List<RaycastResult> uiRaycastResultCache = new List<RaycastResult>();
+        eventSystem.RaycastAll(pointerEventData, uiRaycastResultCache);
+        if (uiRaycastResultCache.Count > 0)
+            isClickUI = true;
+        return isClickUI;
     }
 
     /// <summary>
