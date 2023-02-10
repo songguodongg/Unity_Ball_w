@@ -41,11 +41,6 @@ public class Client : MonoBehaviour
         }
     }
 
-
-
-
-
-
     public new void SendMessage(string message)
     {
         try
@@ -80,10 +75,10 @@ public class Client : MonoBehaviour
                 switch (message)
                 {
                     case "1":
-                        FindObjectOfType<ResourceManager>().SetTextValue("par:"+Error_Message);
+                        FindObjectOfType<Manager>().SetTextValue("par:"+Error_Message);
                         break;
                     case "2":
-                        FindObjectOfType<ResourceManager>().AddResource();
+                        FindObjectOfType<Manager>().AddResource();
                         break;
 
                     default:

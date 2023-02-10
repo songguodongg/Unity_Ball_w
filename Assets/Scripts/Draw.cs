@@ -5,7 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-
+/// <summary>
+/// 借助OpenGL画出大球和中心点的3条轴
+/// </summary>
 public class Draw : MonoBehaviour
 {
     /// <summary>

@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 8771596078545643336}
   - component: {fileID: 8771596078545643343}
   - component: {fileID: 8771596078545643342}
-  - component: {fileID: 4048507782459756435}
   - component: {fileID: 979220697}
   - component: {fileID: 8539763538630353656}
   m_Layer: 7
-  m_Name: Sphere (1)
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,20 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4048507782459756435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8771596078545643341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99504fa5ac3130243ab74d6f3833f47b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  R: 5
 --- !u!120 &979220697
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -225,7 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6792246cc2f16b74c848836ca43974af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClicked: 0
   isPlay: 0
   playSpeed: 2
-  center: {fileID: 0}
+  R: 5
+  isSelect: 0
+  uiManager: {fileID: 0}

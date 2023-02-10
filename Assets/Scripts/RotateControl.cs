@@ -20,20 +20,11 @@ public class RotateControl : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
 
-
             if (checkIsCanRotate())
             {
-
-                Method3();
+                RotateBigBall();
             }
 
-
-
-           
-
-
-            // RotateMethod1();
-            // RotateMethod2();
         }
 
         
@@ -43,15 +34,15 @@ public class RotateControl : MonoBehaviour
     }
 
     /// <summary>
-    /// 小球正在回放或正在移动时不能旋转大球
+    /// 小球正在路径回放或正在移动时不能旋转大球
     /// </summary>
     /// <returns></returns>
     public bool checkIsCanRotate()
     {
-        foreach (var item in FindObjectOfType<ResourceManager>().sPathes.Keys)
+        foreach (var item in FindObjectOfType<Manager>().sPathes.Keys)
         {
             LineMark lineMark = item.GetComponent<LineMark>();
-            if (lineMark.isPlay|| lineMark.isClicked)
+            if (lineMark.isPlay|| lineMark.isSelect)
             {
                 return false;
             }
@@ -93,7 +84,7 @@ public class RotateControl : MonoBehaviour
 
     private float eulX;
     private float eulY;
-    void Method3()
+    void RotateBigBall()
     {
         Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         eulX += mouseInput.y;
