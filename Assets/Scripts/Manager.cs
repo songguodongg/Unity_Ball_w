@@ -21,7 +21,6 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         sphere = Resources.Load<GameObject>("Ball");
 
         addBtn.onClick.AddListener(AddResource);
@@ -50,6 +49,7 @@ public class Manager : MonoBehaviour
     public void ValuePrintEnd(float value)
     {
         Debug.Log("结束" + value);
+        SetTextValue(value.ToString());
     }
     public void ValuePrintPoint(float value)
     {
