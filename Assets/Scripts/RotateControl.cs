@@ -8,7 +8,6 @@ public class RotateControl : MonoBehaviour
     public float minX=-90;
     public float maxX=90;
 
-    public bool IsClickRes = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +17,17 @@ public class RotateControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)&&!IsClickRes)
+        if (Input.GetMouseButton(0))
         {
-            
-            
-            Method3();
+
+
+            if (checkIsCanRotate())
+            {
+
+                Method3();
+            }
+
+
 
            
 
@@ -35,6 +40,23 @@ public class RotateControl : MonoBehaviour
 
 
 
+    }
+
+    /// <summary>
+    /// 小球正在回放或正在移动时不能旋转大球
+    /// </summary>
+    /// <returns></returns>
+    public bool checkIsCanRotate()
+    {
+        foreach (var item in FindObjectOfType<ResourceManager>().sPathes.Keys)
+        {
+            LineMark lineMark = item.GetComponent<LineMark>();
+            if (lineMark.isPlay|| lineMark.isClicked)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void RotateMethod1()

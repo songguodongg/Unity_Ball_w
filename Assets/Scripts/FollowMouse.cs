@@ -23,7 +23,7 @@ public class FollowMouse : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray,out hit, 1000, 1 << 7))
             {
-                FindObjectOfType<RotateControl>().IsClickRes = true;
+                //FindObjectOfType<RotateControl>().IsClickRes = true;
                 //跟随移动
                 if (hit.transform.gameObject == this.gameObject)
                 {
@@ -58,7 +58,7 @@ public class FollowMouse : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<RotateControl>().IsClickRes = false;
+               // FindObjectOfType<RotateControl>().IsClickRes = false;
             }
         }
     }
